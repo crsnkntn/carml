@@ -1,0 +1,6 @@
+CXXFLAGS=-std=c++17
+
+main: main.cpp mnist.h
+	g++ -o main main.cpp -std=c++17
+clean:
+	rm -rf main
