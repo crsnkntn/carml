@@ -40,12 +40,6 @@ Net::~Net() {
 
 // Forward Propagation
 vector<float> Net::forward(Tensor input) {
-    
-
-
-
-
-
     // Reset Utility Vectors
     hidden_layer = vector<float>(config.hidden_layer_size, 0.0);
 

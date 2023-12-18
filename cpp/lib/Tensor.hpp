@@ -55,6 +55,7 @@ namespace carml {
             Tensor& binary_helper (const Tensor& other, 
                 std::function<float(float, float)> func) const;
     };
+
 }
 
 #endif // CARML_TENSOR_H

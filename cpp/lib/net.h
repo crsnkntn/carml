@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-#include "Tensor.h"
+#include "Tensor.hpp"
 
 using std::string;
 using std::vector;
@@ -54,13 +54,13 @@ class Net {
         Net& operator=(const Net&) = delete;
 
         // Forward Propagation
-        vector<float> forward(vector<float> input);
+        Tensor forward(Tensor input);
 
         // Backward Propagation
-        float backward(vector<float> input, int correct_label);
+        float backward(Tensor input, int correct_label);
 
         // Inference Function
-        void inference(vector<float> input, int label);
+        void inference(Tensor input, int label);
 
         // Training Function
         void train(matrix inputs, vector<int> labels, int epochs);
