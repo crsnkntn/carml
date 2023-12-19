@@ -1,77 +1,46 @@
 from dataclasses import dataclass
 
+'''
+Configuration for a Vanilla Transformer
 
+Defaulted to the parameters of "Attention is All You Need"
+'''
 @dataclass
 class VanillaTransformerConfig:
-    debug: bool = False
-
-    # The Height and Width of a patch
-    P: int = 4
-
-    # The Dimension of the Model (size of a flattened patch)
-    d_model: int = 784
-
-    # The number of transformer layers
-    n_layers: int = 4
-
-    # Base value to prevent division by zero
-    ln_eps: float = 1e-5
-
-    # The weight initialization range [-init_range, init_range]
-    init_range: float = 0.02
-
-    # The number of attention heads in each layer
-    n_heads: int = 12
-
-    # The hidden dimension of Q, K, V matrices
-    d_head: int = 64
-
-    # MLP hidden dimension
-    d_mlp: int = 248
-
-    # The number of classes, or the output size of the unembedder
-    n_classes: int = 27
-
+    debug: bool = False         # Flag for debug output
+    init_range: float = 2e-3    # The weight init range [-init_range, init_range]
+    d_model: int = 512          # The model's embedding dimension
+    n_decoder_layers: int = 4   # Number of decoder layers
+    n_encoder_layers: int = 4   # Number of encoder layers
+    n_decoder_heads: int = 8    # Number of attention heads
+    n_encoder_heads: int = 8    # Number of attention heads
+    d_head: int = 64            # Hidden dimension of Q, K, V matrices    
+    d_mlp: int = 2048           # MLP hidden dimension
+    ln_eps: float = 1e-5        # Base value to prevent division by zero
+    dropout_rate: float = 1e-1  # Dropout rate for all model components
 
 
 '''
 Configuration for a Vision Transformer.
 
-Defaulted to the parameters from "An Image is Worth 16x16 Words."
-
-The value of n_classes is the unembedder's output size
+Defaulted to the parameters from "An Image is Worth 16x16 Words"
 '''
 @dataclass
 class VisionTransformerConfig:
-    debug: bool = False
+    debug: bool = False         # Flag for debug output
 
-    # Images are standardized to Height x Width
-    Height: int = 512
-    Width: int = 512
+    Height: int = 512           # Input image height    
+    Width: int = 512            # Input image width
+    Patch_dim: int = 16         # Height and width of a patch
+    n_classes: int = 27         # Number of classes
 
-    # The Height and Width of a patch
-    Patch_dim: int = 16
-
-    # The Dimension of the Model (size of a flattened patch)
-    d_model: int = Patch_dim * Patch_dim
-
-    # The weight initialization range [-init_range, init_range]
-    init_range: float = 0.02
-
-    # The number of transformer layers
-    n_layers: int = 4
-
-    # Base value to prevent division by zero
-    ln_eps: float = 1e-5
-
-    # The number of attention heads in each layer
-    n_heads: int = 12
-
-    # The hidden dimension of Q, K, V matrices
-    d_head: int = 64
-
-    # MLP hidden dimension
-    d_mlp: int = 248
-
-    # The number of classes, or the output size of the unembedder
-    n_classes: int = 27
+    init_range: float = 2e-3    # The weight init range [-init_range, init_range]
+    d_model: int = Patch_dim**2 # The model's embedding dimension
+    n_decoder_layers: int = 12  # Number of decoder layers
+    n_encoder_layers: int = 12  # Number of encoder layers
+    n_decoder_heads: int = 12   # Number of attention heads
+    n_encoder_heads: int = 12   # Number of attention heads
+    d_head: int = 768           # Hidden dimension of Q, K, V matrices    
+    d_mlp: int = 3072           # MLP hidden dimension
+    ln_eps: float = 1e-5        # Base value to prevent division by zero
+    dropout_rate: float = 1e-1  # Dropout rate for all model components
